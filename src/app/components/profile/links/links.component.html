@@ -1,0 +1,5 @@
+<div class="landing__profile__links">
+    <a *ngFor="let link of links" target="_blank" [href]="link.url">
+        <i [ngClass]="link.classes"></i>
+    </a>
+</div>

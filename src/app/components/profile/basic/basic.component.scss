@@ -1,0 +1,29 @@
+.profile {
+
+    display: grid;
+    grid-template-rows: auto;
+    justify-items: center;
+
+    &__image {
+        max-width: 16em;
+        height: auto;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
+        border-radius: 5px;
+        margin: auto;
+    }
+    
+    &__name {
+        font-size: 2em;
+        padding-top: 0.5em;
+    }
+    
+    &__nickname {
+        font-size: 1.5em;
+        padding-top: 0.25em;
+    }
+    
+    &__tag-line {
+        font-size: 1em;
+        padding-top: 0.5em;
+    }
+}
