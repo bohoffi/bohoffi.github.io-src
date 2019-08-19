@@ -1,0 +1,11 @@
+@import "../../../../styles/_mixins";
+
+a {
+    cursor: pointer;
+}
+
+.repo {
+    background-color: white;
+    color: black;
+    @include card(1, 2);
+  }

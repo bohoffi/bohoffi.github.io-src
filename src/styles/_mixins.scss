@@ -1,0 +1,12 @@
+@import "functions";
+
+@mixin card($depth, $radius: 0) {
+  @if $depth < 1 {
+    box-shadow: none;
+  } @else if $depth > 5 {
+    @warn "Invalid $depth `#{$depth}` for mixin `card`.";
+  } @else {
+    box-shadow: bottom-shadow($depth), top-shadow($depth);
+  }
+  border-radius: $radius * 1px;
+}

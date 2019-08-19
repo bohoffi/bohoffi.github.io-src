@@ -1,1 +1,8 @@
-<p>repo-item works!</p>
+<a [href]="repository.html_url" target="_blank">
+    <div class="repo">
+        <h3>{{repository | repoName}} ({{repository.stargazers_count}})</h3>
+        <p>
+            {{repository.description}}
+        </p>
+    </div>
+</a>

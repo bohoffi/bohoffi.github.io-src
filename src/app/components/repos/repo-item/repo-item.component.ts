@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Repository } from 'src/app/interfaces/repository';
 
 @Component({
   selector: 'app-repo-item',
   templateUrl: './repo-item.component.html',
-  styleUrls: ['./repo-item.component.scss']
+  styleUrls: ['./repo-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RepoItemComponent implements OnInit {
+export class RepoItemComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  @Input()
+  repository: Repository;
 }
