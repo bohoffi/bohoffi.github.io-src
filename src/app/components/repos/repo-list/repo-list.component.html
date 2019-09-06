@@ -1,0 +1,7 @@
+<div class="container-fluid">
+    <div class="row">
+        <ng-container *ngFor="let repo of $repos | async">
+            <app-repo-item class="col-12 col-sm-6 col-md-4 col-xl-3" [repository]="repo"></app-repo-item>
+        </ng-container>
+    </div>
+</div>
