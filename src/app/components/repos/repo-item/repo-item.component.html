@@ -1,8 +1,20 @@
 <a [href]="repository.html_url" target="_blank">
-    <div class="repo">
-        <h3>{{repository | repoName}} ({{repository.stargazers_count}})</h3>
-        <p>
-            {{repository.description}}
-        </p>
-    </div>
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar>
+                <mat-icon [matBadge]="repository.stargazers_count" matBadgePosition="after" matBadgeColor="accent">
+                    star
+                </mat-icon>
+            </div>
+            <mat-card-title>{{repository | repoName}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <ng-container *ngIf="repository.archived">
+                <mat-icon>archive</mat-icon>
+            </ng-container>
+            <p>
+                {{repository.description}}
+            </p>
+        </mat-card-content>
+    </mat-card>
 </a>

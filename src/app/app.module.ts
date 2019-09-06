@@ -9,6 +9,7 @@ import { RepoListComponent } from './components/repos/repo-list/repo-list.compon
 import { RepoItemComponent } from './components/repos/repo-item/repo-item.component';
 import { RepoNamePipe } from './pipes/repo-name.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './modules/material/material.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

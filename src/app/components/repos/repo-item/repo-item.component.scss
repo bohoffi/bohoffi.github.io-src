@@ -1,11 +1,8 @@
-@import "../../../../styles/_mixins";
-
 a {
-    cursor: pointer;
-}
+    text-decoration: none;
 
-.repo {
-    background-color: white;
-    color: black;
-    @include card(1, 2);
-  }
+    mat-card {
+        height: 100%;
+        cursor: pointer;
+    }
+}
