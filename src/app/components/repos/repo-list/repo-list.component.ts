@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RepoService } from 'src/app/services/repo.service';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, zip } from 'rxjs';
 import { Repository } from 'src/app/interfaces/repository';
 import { map } from 'rxjs/operators';
 
@@ -27,15 +27,13 @@ export class RepoListComponent implements OnInit {
       .pipe(
         map((repos: Repository[]) => repos.filter((repo: Repository) => !repo.fork && repo.stargazers_count > 0))
       );
-    this.$repos = combineLatest(
-      [
-        this.$bohoffi,
-        this.$baltic
-      ]
+    this.$repos = zip(
+      this.$bohoffi,
+      this.$baltic
     )
-      .pipe(
-        map((streams: Repository[][]) => [].concat.apply([], streams)),
-        map((repos: Repository[]) => repos.sort((a: Repository, b: Repository) => b.stargazers_count - a.stargazers_count))
-      );
+    .pipe(
+      map((streams: [Repository[], Repository[]]) => streams[0].concat(streams[1])),
+      map((repos: Repository[]) => repos.sort((a: Repository, b: Repository) => b.stargazers_count - a.stargazers_count))
+    );
   }
 }
