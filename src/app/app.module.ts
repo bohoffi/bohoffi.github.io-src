@@ -8,6 +8,7 @@ import { BasicComponent } from './components/profile/basic/basic.component';
 import { RepoListComponent } from './components/repos/repo-list/repo-list.component';
 import { RepoItemComponent } from './components/repos/repo-item/repo-item.component';
 import { RepoNamePipe } from './pipes/repo-name.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RepoNamePipe } from './pipes/repo-name.pipe';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
