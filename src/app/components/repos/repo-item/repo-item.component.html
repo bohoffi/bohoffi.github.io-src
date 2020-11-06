@@ -2,9 +2,11 @@
     <mat-card>
         <mat-card-header>
             <div mat-card-avatar>
-                <mat-icon [matBadge]="repository.stargazers_count" matBadgePosition="after" matBadgeColor="accent">
-                    star
-                </mat-icon>
+                <ng-container *ngIf="repository.stargazers_count">
+                    <mat-icon [matBadge]="repository.stargazers_count" matBadgePosition="after" matBadgeColor="accent">
+                        star
+                    </mat-icon>
+                </ng-container>
             </div>
             <mat-card-title>{{repository | repoName}}</mat-card-title>
         </mat-card-header>

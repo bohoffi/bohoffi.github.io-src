@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { RepoService } from 'src/app/services/repo.service';
-import { Observable, combineLatest, zip } from 'rxjs';
-import { Repository } from 'src/app/interfaces/repository';
+import { forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Repository } from '../../../interfaces/repository';
+import { RepoService } from '../../../services/repo.service';
 
 @Component({
   selector: 'app-repo-list',
@@ -12,28 +12,27 @@ import { map } from 'rxjs/operators';
 })
 export class RepoListComponent implements OnInit {
 
-  $bohoffi: Observable<Repository[]>;
-  $baltic: Observable<Repository[]>;
-  $repos: Observable<Repository[]>;
+  public $repos: Observable<Repository[]>;
 
   constructor(private repos: RepoService) { }
 
-  ngOnInit() {
-    this.$bohoffi = this.repos.userRepositories('bohoffi')
+  public ngOnInit(): void {
+    const $bohoffi = this.repos.userRepositories('bohoffi')
       .pipe(
         map((repos: Repository[]) => repos.filter((repo: Repository) => !repo.fork && repo.stargazers_count > 0))
       );
-    this.$baltic = this.repos.userRepositories('balticcode')
+    const $baltic = this.repos.userRepositories('balticcode')
       .pipe(
         map((repos: Repository[]) => repos.filter((repo: Repository) => !repo.fork && repo.stargazers_count > 0))
       );
-    this.$repos = zip(
-      this.$bohoffi,
-      this.$baltic
+    this.$repos = forkJoin({
+      bohoffi: $bohoffi,
+      balticCode: $baltic
+    }
     )
-    .pipe(
-      map((streams: [Repository[], Repository[]]) => streams[0].concat(streams[1])),
-      map((repos: Repository[]) => repos.sort((a: Repository, b: Repository) => b.stargazers_count - a.stargazers_count))
-    );
+      .pipe(
+        map((repos: { bohoffi: Repository[], balticCode: Repository[] }) => [...repos.bohoffi, ...repos.balticCode]),
+        map((repos: Repository[]) => repos.sort((a: Repository, b: Repository) => b.stargazers_count - a.stargazers_count))
+      );
   }
 }

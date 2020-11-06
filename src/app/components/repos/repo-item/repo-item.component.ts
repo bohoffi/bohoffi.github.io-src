@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Repository } from 'src/app/interfaces/repository';
+import { Repository } from '../../../interfaces/repository';
 
 @Component({
   selector: 'app-repo-item',

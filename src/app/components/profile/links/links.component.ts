@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Link } from 'src/app/interfaces/link';
+import { Link } from '../../../interfaces/link';
 
 @Component({
   selector: 'app-profile-links',
